@@ -6,6 +6,6 @@ export MAIL_USER=mail@example.com
 export MAIL_PASSWORD=secret
 
 # This controls the debugging
-#export NODE_DEBUG=debugtest,debugmysql,debugleveldb,debugodata,debugmain
+#export NODE_DEBUG=debugtest,debugmysql,debugodata,debugmain
 export NODE_DEBUG=debugodata,debugmysql,debugmain
 #

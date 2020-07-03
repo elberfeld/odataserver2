@@ -3,15 +3,10 @@
 
 var ConnectLight = require('connectlight');
 var ODServerMysql = require('./odservermysql.js');
-var ODServerLevelDb = require('./odserverleveldb.js');
 var OdParser = require('odparser').OdParser;
 var OdAcl = require('odacl');
 var basicAuth = require('connectbasicauth');
 
-// constants
-// =========
-
-var LEVELDB_PATH = './mydb'
 
 // Setup logging
 // =============
@@ -33,7 +28,6 @@ if (DEV_MODE) {
 
 var mws = new ConnectLight();
 var odsMysql = new ODServerMysql();
-var odsLevelDb = new ODServerLevelDb(LEVELDB_PATH);
 
 // Allow CORS
 mws.use( function(req, res, next) {
@@ -132,7 +126,6 @@ var acl = new OdAcl('perms', {
   connectFromHost: (process.env.DB_HOST === 'localhost') ? 'localhost' : '%'
 }, handleError);
 mws.use(acl.handleRequest());
-mws.use(odsLevelDb.handleRequest());
 
 mws.listen(3000);
 
